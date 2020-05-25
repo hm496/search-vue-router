@@ -43,8 +43,9 @@ export default class SearchVueRouter {
 
   update() {
     const cur = this.getMatchedComponent();
+    console.log('cur', cur);
     this.apps.forEach(app => {
-      app._search_route = cur;
+      app._searchRoute = cur;
     });
   }
 
@@ -62,6 +63,7 @@ export default class SearchVueRouter {
   }
 
   getMatchedComponent() {
+    if (!this.formatRoutes) return;
     const location = this.getCurrentLocation();
     let matched = this.formatRoutes && this.formatRoutes[location.path];
     if (!matched) {
@@ -117,7 +119,7 @@ SearchVueRouter.install = function(Vue) {
         this._searchRouter = this.$options.searchRouter;
         this._searchRouter.init(this._searchRouterRoot);
         const cur = this._searchRouter.getMatchedComponent();
-        Vue.util.defineReactive(this, '_search_route', cur);
+        Vue.util.defineReactive(this, '_searchRoute', cur);
       } else {
         this._searchRouterRoot = (this.$parent && this.$parent._searchRouterRoot) || this;
       }

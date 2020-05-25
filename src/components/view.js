@@ -7,7 +7,7 @@ export default {
       default: 'default'
     }
   },
-  render (_, { props, children, parent, data }) {
+  render(_, { props, children, parent, data }) {
     // used by devtools to display a router-view badge
     data.routerView = true;
 
