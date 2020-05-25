@@ -24,8 +24,8 @@ export default class SearchVueRouter {
     function format(routes) {
       const r = {};
       routes.forEach(item => {
-        r[item.path] = item;
-        r['__route__name__' + item.name] = item;
+        if (item.path !== undefined) r[item.path] = item;
+        if (item.name !== undefined) r['__route__name__' + item.name] = item;
       });
       return r;
     }
