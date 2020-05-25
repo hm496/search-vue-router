@@ -18,7 +18,17 @@ export default class History {
     window.history.go(n);
   }
 
-  getNewPath(location) {
+  push(location) {
+    pushState(this.__getNewPath(location));
+    this.searchVueRouter.update();
+  }
+
+  replace(location) {
+    pushState(this.__getNewPath(location), true);
+    this.searchVueRouter.update();
+  }
+
+  __getNewPath(location) {
     // location.path
     let search = window.location.search;
     const searchKeyRegExp = new RegExp('(\\?|&)(' + this.searchKey + '=[^&]*)(&|$)');
@@ -34,21 +44,6 @@ export default class History {
     }
     return search + window.location.hash;
   }
-
-  push(location) {
-    pushState(this.getNewPath(location));
-    this.searchVueRouter.update();
-  }
-
-  replace(location) {
-    pushState(this.getNewPath(location), true);
-    this.searchVueRouter.update();
-  }
-}
-
-export function getSearchPath() {
-  let path = decodeURI(window.location.pathname);
-  return (path || '/') + window.location.search + window.location.hash;
 }
 
 function pushState(url, replace) {
