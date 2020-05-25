@@ -61,10 +61,6 @@ export default class SearchVueRouter {
     return location;
   }
 
-  getHashUrl() {
-    return window.location.hash.slice(1);
-  }
-
   getMatchedComponent() {
     const location = this.getCurrentLocation();
     let matched = this.formatRoutes && this.formatRoutes[location.path];
@@ -118,7 +114,7 @@ SearchVueRouter.install = function(Vue) {
     beforeCreate() {
       if (this.$options.searchRouter) {
         this._searchRouterRoot = this;
-        this._searchRouter = this.$options.searchRouter; // WffRouter 路由实例
+        this._searchRouter = this.$options.searchRouter;
         this._searchRouter.init(this._searchRouterRoot);
         const cur = this._searchRouter.getMatchedComponent();
         Vue.util.defineReactive(this, '_search_route', cur);
@@ -136,7 +132,7 @@ SearchVueRouter.install = function(Vue) {
 
   Object.defineProperty(Vue.prototype, '$searchRoute', {
     get() {
-      return this._searchRouterRoot._search_route;
+      return this._searchRouterRoot._searchRoute;
     }
   });
 };
