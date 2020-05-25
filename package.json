@@ -1,0 +1,22 @@
+{
+  "name": "search-vue-router",
+  "version": "0.0.1",
+  "description": "search-vue-router",
+  "main": "./src/index.js",
+  "bugs": {
+    "url": "https://github.com/hm496/search-vue-router/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hm496/search-vue-router.git"
+  },
+  "dependencies": {
+  }
+}
